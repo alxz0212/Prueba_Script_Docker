@@ -156,7 +156,7 @@ Accesible en `http://localhost:8080`, mostrando los 2 Workers registrados y list
 ### 3. Dashboard del Proyecto
 Accesible en `http://localhost:8081`. Muestra la arquitectura, el estado de los servicios y evidencia visual.
 
-![Dashboard Web](./images/dashboard.png)
+![Dashboard Web](./images/localhost-8081.png)
 
 ---
 
