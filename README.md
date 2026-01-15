@@ -18,23 +18,23 @@ Este proyecto crea un **puente** entre Docker y tu Disco Externo para que puedas
 ```mermaid
 graph TD
     subgraph "Tu Ordenador (Windows)"
-        Script[Setup Script] -- 1. Crea --> Junction[📂 Carpeta 'data' (Enlace)]
+        Script["Setup Script"] -- "1. Crea" --> Junction["📂 Carpeta 'data' (Enlace)"]
     end
 
     subgraph "Disco SSD Externo (E:)"
-        RealFolder[📂 BIGDATA_LAB_STORAGE/../data]
+        RealFolder["📂 BIGDATA_LAB_STORAGE/../data"]
     end
 
     subgraph "Docker (Cluster Spark)"
-        Master[Spark Master]
-        Worker1[Worker 1]
-        Worker2[Worker 2]
+        Master["Spark Master"]
+        Worker1["Worker 1"]
+        Worker2["Worker 2"]
     end
 
-    Junction -.->|2. Apunta a| RealFolder
-    Master -->|3. Lee/Escribe| Junction
-    Worker1 -->|3. Lee/Escribe| Junction
-    Worker2 -->|3. Lee/Escribe| Junction
+    Junction -.->|"2. Apunta a"| RealFolder
+    Master -->|"3. Lee/Escribe"| Junction
+    Worker1 -->|"3. Lee/Escribe"| Junction
+    Worker2 -->|"3. Lee/Escribe"| Junction
 
     style Junction fill:#e1f5fe,stroke:#01579b
     style RealFolder fill:#fff3e0,stroke:#e65100
@@ -152,6 +152,11 @@ Se muestra el estado "Running" (verde) para todos los servicios.
 Accesible en `http://localhost:8080`, mostrando los 2 Workers registrados y listos.
 
 ![Spark Master UI](./images/spark_ui.png)
+
+### 3. Dashboard del Proyecto
+Accesible en `http://localhost:8081`. Muestra la arquitectura, el estado de los servicios y evidencia visual.
+
+![Dashboard Web](./images/dashboard.png)
 
 ---
 
