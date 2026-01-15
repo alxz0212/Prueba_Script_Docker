@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Data Lab | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+    </script>
+</head>
+
+<body>
+    <div class="blob-bg"></div>
+
+    <header>
+        <div class="container">
+            <span class="badge">PROYECTO FINAL</span>
+            <h1>Big Data Lab Cluster</h1>
+            <p>Infraestructura de Spark sobre Docker con Almacenamiento SSD Externo</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Status Cards -->
+        <section class="grid-3">
+            <div class="card glass status-card">
+                <div class="icon">🚀</div>
+                <h3>Spark Master</h3>
+                <p>Nodo Coordinador</p>
+                <div class="status-indicator online"><span>●</span> Online</div>
+                <a href="http://localhost:8080" target="_blank" class="btn">Abrir Panel Control</a>
+            </div>
+            <div class="card glass status-card">
+                <div class="icon">⚙️</div>
+                <h3>Spark Workers</h3>
+                <p>2 Nodos de Procesamiento</p>
+                <div class="status-indicator online"><span>●</span> Online</div>
+            </div>
+            <div class="card glass status-card">
+                <div class="icon">💾</div>
+                <h3>SSD Storage</h3>
+                <p>Enlace Directo</p>
+                <div class="status-indicator connected"><span>●</span> Conectado</div>
+            </div>
+        </section>
+
+        <!-- Architecture -->
+        <section class="card glass full-width">
+            <h2>🧠 Arquitectura del Sistema</h2>
+            <p>Visualización del flujo de datos entre el Host (Tu PC), el almacenamiento externo y el cluster Docker.
+            </p>
+            <div class="mermaid-container">
+                <pre class="mermaid">
+                graph LR
+                    subgraph Host["💻 Tu PC Windows"]
+                        direction TB
+                        User[Usuario]
+                        Script[Script Setup]
+                    end
+                    
+                    subgraph SSD["💾 Disco SSD (E:)"]
+                        Data[BigData Folder]
+                    end
+
+                    subgraph Docker["🐳 Cluster Docker"]
+                        direction TB
+                        Master[Spark Master]
+                        W1[Worker 1]
+                        W2[Worker 2]
+                    end
+
+                    User -->|Ejecuta| Script
+                    Script -->|Genera .env| Docker
+                    Docker -->|Monta Volumen| SSD
+                    Master -->|Procesa| Data
+                    W1 -->|Procesa| Data
+                    W2 -->|Procesa| Data
+
+                    style Host fill:#1e293b,stroke:#3b82f6,stroke-width:2px,color:#fff
+                    style SSD fill:#431407,stroke:#f97316,stroke-width:2px,color:#fff
+                    style Docker fill:#064e3b,stroke:#22c55e,stroke-width:2px,color:#fff
+                </pre>
+            </div>
+        </section>
+
+        <!-- Evidence Gallery -->
+        <section class="card glass full-width">
+            <h2>📸 Evidencias de Ejecución</h2>
+            <div class="gallery">
+                <figure>
+                    <img src="assets/docker_success.png" alt="Docker Containers Running">
+                    <figcaption>Docker Desktop: Todos los contenedores operativos</figcaption>
+                </figure>
+                <figure>
+                    <img src="assets/spark_ui.png" alt="Spark Master UI">
+                    <figcaption>Spark Master UI: Workers registrados exitosamente</figcaption>
+                </figure>
+            </div>
+        </section>
+        <!-- Conclusion -->
+        <section class="card glass full-width">
+            <h2>💡 Conclusiones del Proyecto</h2>
+            <p>
+                Este laboratorio demuestra la viabilidad de ejecutar infraestructuras de <strong>Big Data (Apache
+                    Spark)</strong> en entornos locales limitados, utilizando <strong>Docker</strong> para la
+                orquestación de servicios y almacenamiento <strong>SSD externo</strong> para manejar grandes volúmenes
+                de datos.
+                <br><br>
+                Hemos logrado desacoplar el almacenamiento del procesamiento, permitiendo escalabilidad y portabilidad
+                sin comprometer el rendimiento del equipo anfitrión. La implementación del Dashboard visual facilita la
+                monitorización y comprensión de la arquitectura desplegada.
+            </p>
+        </section>
+    </main>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
+    <footer>
+        <p>Desarrollado con ❤️ para la clase de Big Data</p>
+    </footer>
+
+    <script>
+        // Modal Logic
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("img01");
+        const captionText = document.getElementById("caption");
+        const closeSpan = document.getElementsByClassName("close")[0];
+
+        document.querySelectorAll('.gallery img').forEach(img => {
+            img.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+        });
+
+        closeSpan.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        modal.onclick = function (e) {
+            if (e.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

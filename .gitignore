@@ -1,0 +1,13 @@
+# Docker Environment
+.env
+
+# Data Directory (Junction/Volume)
+data/
+
+# PowerShell temporary files
+*.tmp
+
+# System Files
+Thumbs.db
+Desktop.ini
+.DS_Store
