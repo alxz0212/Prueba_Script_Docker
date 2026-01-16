@@ -160,24 +160,22 @@ Accesible en `http://localhost:8081`. Muestra la arquitectura, el estado de los 
 
 ---
 
-## 📜 Resumen de Comandos Ejecutados
+## 💻 Ejecución Manual (Alternativa)
 
-Estos son los comandos exactos que utilizamos para lograr este despliegue exitoso:
+Si la ejecución automática falla o prefieres hacerlo paso a paso, utiliza estos comandos en una terminal de **PowerShell como Administrador**.
 
-1.  **Ejecutar Script de Configuración (PowerShell Admin)**
-    ```powershell
-    cd C:\Users\alexi\Downloads\Prueba_Script_Docker
-    .\setup_ssd_bigdata_v3.ps1
-    ```
-    *Durante la ejecución, seleccionamos el disco correcto (ej: E).*
+⚠️ **Nota Importante sobre la Ruta:**
+El comando `cd` de abajo es solo un **ejemplo/referencia**. Debes cambiarlo por la ruta real donde tú tengas guardada la carpeta `Prueba_Script_Docker` en tu PC.
 
-2.  **Iniciar Docker**
-    ```powershell
-    docker compose up -d
-    ```
+```powershell
+# 1. Ir a la carpeta de tu proyecto (¡AJUSTA ESTA RUTA A LA TUYA!)
+cd "C:\Users\amendoza\.gemini\antigravity\scratch\Prueba_Script_Docker"
 
-3.  **Verificar Logs (Opcional)**
-    ```powershell
-    docker compose logs -f
-    ```
+# 2. Ejecutar el script (ahora sí funcionará el enlace y .env)
+# Si te sale error de "scripts disabled", usa este comando especial:
+powershell -ExecutionPolicy Bypass -File .\setup_ssd_bigdata_v3.ps1
+
+# 3. Levantar Docker (si el script no lo hizo ya)
+docker compose up -d
+```
 
