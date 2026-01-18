@@ -175,7 +175,27 @@ cd "C:\Users\amendoza\.gemini\antigravity\scratch\Prueba_Script_Docker"
 # Si te sale error de "scripts disabled", usa este comando especial:
 powershell -ExecutionPolicy Bypass -File .\setup_ssd_bigdata_v3.ps1
 
+```powershell
 # 3. Levantar Docker (si el script no lo hizo ya)
 docker compose up -d
+```
+
+---
+
+## 🔄 Cómo Actualizar (Desde GitHub)
+
+Si en el futuro hago cambios en el repositorio y quieres bajarlos a tu PC:
+
+### Opción 1: Actualización Normal
+Usa esto si solo quieres traer lo nuevo:
+```powershell
+git pull origin main
+```
+
+### Opción 2: Forzar Sincronización (Si algo falla)
+Usa esto si tienes errores o quieres estar 100% igual que la nube (⚠️ Borra tus cambios locales no guardados):
+```powershell
+git fetch --all
+git reset --hard origin/main
 ```
 
