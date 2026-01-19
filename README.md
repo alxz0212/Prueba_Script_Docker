@@ -256,7 +256,7 @@ Si quieres lanzar los análisis manualmente desde la terminal:
 
 ## 🚀 Guía Rápida (Para nuevas PCs o Clones)
 
-Si acabas de clonar este proyecto o vas a usarlo en un ordenador nuevo, sigue estos 4 pasos críticos:
+Si acabas de clonar este proyecto o vas a usarlo en un ordenador nuevo, sigue estos pasos críticos:
 
 1.  **Conecta tu SSD**: Asegúrate de que el disco esté conectado (preferiblemente letra **E:**).
 2.  **Configura el "Portal" (Junction)**: Ejecuta PowerShell como **Administrador** en la carpeta del proyecto y lanza:
@@ -267,10 +267,20 @@ Si acabas de clonar este proyecto o vas a usarlo en un ordenador nuevo, sigue es
     ```powershell
     docker compose up -d
     ```
-4.  **Verifica y Disfruta**:
+4.  **Poblar el SSD (Descargar Datos)**: Este paso descarga las temporadas de La Liga y las guarda en tu SSD externo:
+    ```powershell
+    python hadoop_lab/prepare_data.py
+    ```
+    > [!TIP]
+    > **¿Cuándo ejecutarlo?**
+    > - **La primera vez**: Es obligatorio para que el Dashboard y los análisis tengan datos.
+    > - **Si cambias de PC**: Para recrear los datos en el nuevo SSD.
+    > - **Si quieres datos frescos**: Para bajar los partidos más recientes después de unos meses.
+
+5.  **Verifica y Disfruta**:
     *   Dashboard: [http://localhost:8081](http://localhost:8081)
     *   Spark Master: [http://localhost:8080](http://localhost:8080)
-5.  **Apagar el Laboratorio**: Cuando termines, libera recursos ejecutando:
+6.  **Apagar el Laboratorio**: Cuando termines, libera recursos ejecutando:
     ```powershell
     docker compose down
     ```
