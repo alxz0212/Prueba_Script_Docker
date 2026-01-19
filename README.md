@@ -270,6 +270,10 @@ Si acabas de clonar este proyecto o vas a usarlo en un ordenador nuevo, sigue es
 4.  **Verifica y Disfruta**:
     *   Dashboard: [http://localhost:8081](http://localhost:8081)
     *   Spark Master: [http://localhost:8080](http://localhost:8080)
+5.  **Apagar el Laboratorio**: Cuando termines, libera recursos ejecutando:
+    ```powershell
+    docker compose down
+    ```
 
 ---
 
