@@ -10,7 +10,8 @@ SEASONS = [
     "1819", "1718", "1617", "1516", "1415",
     "1314", "1213", "1112", "1011", "0910"
 ]
-OUTPUT_FILE = "laliga_history.csv"
+# Guardar en la carpeta 'data' que apunta al SSD
+OUTPUT_FILE = "data/laliga_history.csv"
 
 def download_and_merge():
     all_data = []

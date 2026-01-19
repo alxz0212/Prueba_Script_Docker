@@ -291,8 +291,8 @@
         let rawData = [];
         let goalsChart, cardsChart, winsChart;
 
-        // Cargar CSV
-        Papa.parse("data/dataset.csv", {
+        // Cargar CSV desde la carpeta 'data' (Portal al SSD)
+        Papa.parse("data/laliga_history.csv", {
             download: true,
             header: true,
             dynamicTyping: true,
