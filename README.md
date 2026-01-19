@@ -13,44 +13,52 @@ Antes de empezar, asegúrate de tener:
 
 ## 🧠 ¿Cómo funciona este Laboratorio?
 
-Este proyecto crea un **puente** entre Docker y tu Disco Externo para que puedas procesar muchos datos sin llenar tu disco `C:`.
+Este proyecto no solo es un clúster de Spark, es un **Ecosistema de Datos Completo** que conecta tu hardware físico (SSD) con herramientas de procesado masivo.
 
 ```mermaid
 graph TD
-    subgraph "Tu Ordenador (Windows)"
-        Script["Setup Script"] -- "1. Crea" --> Junction["📂 Carpeta 'data' (Enlace)"]
+    subgraph "1. Ingesta (Internet)"
+        Web["🌐 Football-Data.co.uk"] -- "Descarga" --> Prepare["🐍 prepare_data.py"]
     end
 
-    subgraph "Disco SSD Externo (E:)"
-        RealFolder["📂 BIGDATA_LAB_STORAGE/../data"]
+    subgraph "2. Almacenamiento (Disco SSD)"
+        Prepare -- "Mapeo" --> RealFolder["📂 BIGDATA_LAB_STORAGE/../data"]
+        RealFolder -- "Consolida" --> CSV["📄 laliga_history.csv"]
     end
 
-    subgraph "Docker (Cluster Spark)"
-        Master["Spark Master"]
-        Worker1["Worker 1"]
-        Worker2["Worker 2"]
+    subgraph "3. Motores de Procesamiento (Docker)"
+        CSV --> MR["🐘 Hadoop MapReduce (mrjob)"]
+        CSV --> SP["🚀 Spark SQL (PySpark)"]
+        MR --> Report1["📄 final_report.txt"]
+        SP --> Report2["📄 spark_reporte.txt"]
     end
 
-    Junction -.->|"2. Apunta a"| RealFolder
-    Master -->|"3. Lee/Escribe"| Junction
-    Worker1 -->|"3. Lee/Escribe"| Junction
-    Worker2 -->|"3. Lee/Escribe"| Junction
+    subgraph "4. Presentación (Web)"
+        CSV --> Dash["📊 Dashboard Interactivo (localhost:8081)"]
+        Report1 -.-> Dash
+        Report2 -.-> Dash
+    end
 
-    style Junction fill:#e1f5fe,stroke:#01579b
     style RealFolder fill:#fff3e0,stroke:#e65100
     style Docker fill:#e8f5e9,stroke:#2e7d32
+    style Dash fill:#e1f5fe,stroke:#01579b
 ```
 
-1.  **El Script** crea una carpeta especial (`data` en tu proyecto) que actúa como un "portal".
-2.  Este "portal" apunta realmente a tu **Disco SSD Externo**.
-3.  **Docker** se conecta a ese "portal". Todo lo que guardes en Docker aparecerá mágicamente en tu SSD.
+### ¿Qué ocurre "bajo el capó"?
 
-### 🔧 Detalles Técnicos Importantes
+1.  **Ingesta Inteligente**: El script `prepare_data.py` descarga automáticamente las últimas 15 temporadas de La Liga, las limpia y las une en un único archivo gigante en tu **SSD**.
+2.  **Puente de Memoria**: Docker utiliza un archivo `.env` para saber exactamente dónde está tu SSD, montando los datos sin ocupar espacio en tu disco `C:`.
+3.  **Procesamiento Híbrido**: 
+    *   **Clásico**: Usamos `mrjob` para emular el corazón de Hadoop (MapReduce) y calcular récords históricos.
+    *   **Moderno**: Usamos `Spark SQL` para lanzar consultas "estilo base de datos" de alta velocidad sobre millones de registros.
+4.  **Visualización**: Todo se conecta a un servidor **Nginx** que sirve un Dashboard interactivo, donde puedes filtrar temporadas y ver los resultados en gráficos dinámicos.
+
+#### 🔧 Detalles Técnicos Importantes
 
 #### 1. ¿Por qué usamos un archivo `.env`?
 Docker en Windows a veces tiene problemas para entender los "atajos" (Junctions). Para evitar errores como "file exists", el script genera automáticamente un archivo oculto `.env`.
 *   **¿Qué hace?**: Guarda la **ruta real y exacta** de tu disco SSD (ej: `E:\BIGDATA...`).
-*   **Beneficio**: Al usar esta ruta real, Docker monta el disco directamente sin confundirse con el atajo, garantizando estabilidad total.
+*   **Beneficio**: El clúster de Spark ve el disco directamente, garantizando estabilidad total.
 
 #### 2. Dashboard del Proyecto (Web)
 Hemos incluido una página web local (`localhost:8081`) para facilitar la presentación del proyecto.
