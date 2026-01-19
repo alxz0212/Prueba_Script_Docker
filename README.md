@@ -236,11 +236,40 @@ Como mejora final, se ha integrado un ecosistema completo de análisis de Big Da
 1.  **Hadoop MapReduce (Python)**: Procesamiento clásico de goles, tarjetas y victorias usando `mrjob`.
 2.  **Spark SQL (Docker)**: Análisis moderno de alto nivel con consultas SQL distribuidas en el clúster.
 3.  **Dashboard Interactivo**: Visualización profesional en tiempo real con filtros por temporada.
-4.  **Automatización**: Todo el flujo (descarga, limpieza y análisis) se orquesta con un solo script.
+### 🛠️ Comandos de Ejecución
+Si quieres lanzar los análisis manualmente desde la terminal:
+
+*   **Hadoop (MapReduce)**:
+    ```powershell
+    powershell -File hadoop_lab/run_analysis.ps1
+    ```
+*   **Spark SQL (Clúster)**:
+    ```powershell
+    docker exec -it spark-master /opt/spark/bin/spark-submit /opt/spark/scripts/spark_analysis.py
+    ```
 
 > [!TIP]
 > **¿Quieres saber más?** Si deseas ver el manual técnico completo, el flujo de datos detallado y cómo ejecutar las consultas SQL avanzadas, consulta el archivo:
 > 👉 **[Doc_Hadoop.md](./hadoop_lab/Doc_Hadoop.md)**
+
+---
+
+## 🚀 Guía Rápida (Para nuevas PCs o Clones)
+
+Si acabas de clonar este proyecto o vas a usarlo en un ordenador nuevo, sigue estos 4 pasos críticos:
+
+1.  **Conecta tu SSD**: Asegúrate de que el disco esté conectado (preferiblemente letra **E:**).
+2.  **Configura el "Portal" (Junction)**: Ejecuta PowerShell como **Administrador** en la carpeta del proyecto y lanza:
+    ```powershell
+    powershell -ExecutionPolicy Bypass -File .\setup_ssd_bigdata_v3.ps1
+    ```
+3.  **Inicia el Clúster**:
+    ```powershell
+    docker compose up -d
+    ```
+4.  **Verifica y Disfruta**:
+    *   Dashboard: [http://localhost:8081](http://localhost:8081)
+    *   Spark Master: [http://localhost:8080](http://localhost:8080)
 
 ---
 
