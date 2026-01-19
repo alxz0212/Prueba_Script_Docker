@@ -47,3 +47,4 @@ services:
       - "8081:80"
     volumes:
       - ./www:/usr/share/nginx/html
+      - ${SPARK_DATA_PATH}:/usr/share/nginx/html/data
