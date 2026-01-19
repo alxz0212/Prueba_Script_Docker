@@ -219,3 +219,21 @@ git push
 ```
 *(Si es la primera vez en una sesión nueva, GitHub podría pedirte credenciales).*
 
+---
+
+## 📊 Resumen del Módulo Hadoop & Spark SQL
+
+Como mejora final, se ha integrado un ecosistema completo de análisis de Big Data:
+
+1.  **Hadoop MapReduce (Python)**: Procesamiento clásico de goles, tarjetas y victorias usando `mrjob`.
+2.  **Spark SQL (Docker)**: Análisis moderno de alto nivel con consultas SQL distribuidas en el clúster.
+3.  **Dashboard Interactivo**: Visualización profesional en tiempo real con filtros por temporada.
+4.  **Automatización**: Todo el flujo (descarga, limpieza y análisis) se orquesta con un solo script.
+
+> [!TIP]
+> **¿Quieres saber más?** Si deseas ver el manual técnico completo, el flujo de datos detallado y cómo ejecutar las consultas SQL avanzadas, consulta el archivo:
+> 👉 **[Doc_Hadoop.md](./hadoop_lab/Doc_Hadoop.md)**
+
+---
+
+**¡Disfruta aprendiendo Big Data!** 🐘🚀
