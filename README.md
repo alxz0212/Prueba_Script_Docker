@@ -158,6 +158,13 @@ Accesible en `http://localhost:8081`. Muestra la arquitectura, el estado de los 
 
 ![Dashboard Web](./images/localhost-8081.png)
 
+### 4. Módulo de Hadoop (Analítica Avanzada)
+Nuevo módulo de análisis de datos históricos (La Liga 2009-2024) usando MapReduce.
+
+*   **Script de Análisis**: Ubicado en `hadoop_lab/run_analysis.ps1`. Descarga datos y genera estadísticas.
+*   **Dashboard Interactivo**: Accesible en `http://localhost:8081/hadoop.html`.
+    *   Permite filtrar por años y ver gráficas de Goles, Tarjetas y Victorias.
+
 ---
 
 ## 💻 Ejecución Manual (Alternativa)
@@ -198,4 +205,17 @@ Usa esto si tienes errores o quieres estar 100% igual que la nube (⚠️ Borra 
 git fetch --all
 git reset --hard origin/main
 ```
+
+---
+
+## 💾 Cómo Guardar tus Cambios (Subir a GitHub)
+
+Cada vez que modifiques código o documentación y quieras guardarlo en la nube:
+
+```powershell
+git add .
+git commit -m "Escribe aquí qué cambiaste"
+git push
+```
+*(Si es la primera vez en una sesión nueva, GitHub podría pedirte credenciales).*
 
